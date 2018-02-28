@@ -1,0 +1,426 @@
+body {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.sidebar {
+  background: #1e2b60;
+  background: -moz-linear-gradient(-45deg, #122057 0%, #121754 100%);
+  background: -webkit-linear-gradient(-45deg, #1e2b60 0%,#1c4da9 100%);
+  background: linear-gradient(135deg, #1e2b60 0%,#1c72a9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e2b60', endColorstr='#1c72a9',GradientType=1 );
+  color: white;
+  float: right;
+  width: 22%;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  font-size: 20px;
+  padding-top: 50px;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.sideitem {
+  border-bottom: 1px solid #ffffff;
+}
+
+.sideitem a {
+  display: block;
+}
+
+.panel-body a {
+  background-color: transparent;
+  padding: 6px 15px;
+  display: block;
+  text-align: left;
+  color: white;
+}
+
+.panel-body a i {
+  width: 24px;
+  text-align: left;
+}
+
+.panel-body a:hover {
+  background-color: rgba(255,255,255,0.25);
+  color: #ffc465;
+  text-decoration: none;
+}
+
+.bimba {
+  overflow-y: auto;
+}
+
+.bimba button i {
+  width: 18px;
+  text-align: center;
+}
+
+.bimba button {
+  border: none;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+  box-shadow: none;
+  font-size: 23px;
+  padding: 10px;
+  text-align: left;
+  
+  outline: none;
+}
+
+.bimba button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+  color: #edce8e;
+  border: none;
+  box-shadow: none;
+}
+
+.bimba button:enabled {
+  background-color: transparent;
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+.bimba .btn.btn-default:active {
+  background-color: rgba(0, 0, 0, 0.25);
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.bimba .panel-body {
+  padding: 0;
+  background-color: transparent;
+  color: white;
+}
+
+.bimba .panel {
+  background-color: transparent;
+  margin-bottom: 0;
+  border: none;
+ 
+}
+
+#newspaper {
+  background-color: rgba(255, 0, 0, 0.0);
+  
+}
+
+#newspaper .elementArea {
+  position: absolute;
+  text-align: left;
+  transform-origin: 50% 50%;
+}
+
+#newspaper .elementArea .newsTitle {
+  font-weight: bolder;
+  line-height: 1.2;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.textFlow span {
+  line-height: 1.2;
+}
+
+.textFlow li {
+  font-size: 28px;
+}
+
+.textFlow li p {
+  margin-bottom: 10px;
+}
+.textFlow p {
+  margin-bottom: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: justify;
+}
+
+.error-message {
+  color: red;
+}
+
+
+.textDimensionCalculation {
+    position: absolute;
+    visibility: hidden;
+    height: auto;
+    width: auto;
+    white-space: nowrap;
+}
+
+.caption {
+  display: inline-block;
+  white-space: pre;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: left;
+}
+
+.tipText {
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.valueText {
+  font-size: 20px;
+  vertical-align: center;
+}
+
+.targetItemBGRectHover {
+  fill: orange;
+}
+
+.target-data-tip {
+  fill: rgb(228, 182, 108);
+  stroke: rgb(0, 0, 0);
+  stroke-width: "1";
+}
+.target-data-tip-hovered {
+    stroke: rgb(240, 82, 9);
+    fill: rgb(223, 127, 2);
+    stroke-width: "2";
+  }
+body {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .sidebar {
+    background: #1e2b60;
+    background: -moz-linear-gradient(-45deg, #122057 0%, #121754 100%);
+    background: -webkit-linear-gradient(-45deg, #1e2b60 0%,#1c4da9 100%);
+    background: linear-gradient(135deg, #1e2b60 0%,#1c72a9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e2b60', endColorstr='#1c72a9',GradientType=1 );
+    color: white;
+    float: right;
+    width: 22%;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    font-size: 20px;
+    padding-top: 50px;
+  }
+
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+      position: relative;
+      display: inline-block;
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+  }
+
+
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}
+
+  .sideitem {
+    border-bottom: 1px solid #ffffff;
+  }
+
+  .sideitem a {
+    display: block;
+  }
+
+  .panel-body a {
+    background-color: transparent;
+    padding: 6px 15px;
+    display: block;
+    text-align: left;
+    color: white;
+  }
+
+  .panel-body a i {
+    width: 24px;
+    text-align: left;
+  }
+
+  .panel-body a:hover {
+    background-color: rgba(255,255,255,0.25);
+    color: #ffc465;
+    text-decoration: none;
+  }
+
+  .bimba {
+    overflow-y: auto;
+  }
+
+  .bimba button i {
+    width: 18px;
+    text-align: center;
+  }
+
+  .bimba button {
+    border: none;
+    background-color: transparent;
+    display: block;
+    width: 100%;
+    box-shadow: none;
+    font-size: 23px;
+    padding: 10px;
+    text-align: left;
+    
+    outline: none;
+  }
+
+  .bimba button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    text-decoration: none;
+    color: #edce8e;
+    border: none;
+    box-shadow: none;
+  }
+
+  .bimba button:enabled {
+    background-color: transparent;
+    color: white;
+    border: none;
+    box-shadow: none;
+  }
+  .bimba .btn.btn-default:active {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: none;
+    box-shadow: none;
+  }
+
+  .bimba .panel-body {
+    padding: 0;
+    background-color: transparent;
+    color: white;
+  }
+
+  .bimba .panel {
+    background-color: transparent;
+    margin-bottom: 0;
+    border: none;
+   
+  }
+
+  #newspaper {
+    background-color: rgba(255, 0, 0, 0.0);
+    
+  }
+
+  #newspaper .elementArea {
+    position: absolute;
+    text-align: left;
+    transform-origin: 50% 50%;
+  }
+
+  #newspaper .elementArea .newsTitle {
+    font-weight: bolder;
+    line-height: 1.2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .textFlow span {
+    line-height: 1.2;
+  }
+
+  .textFlow li {
+    font-size: 28px;
+  }
+
+  .textFlow li p {
+    margin-bottom: 10px;
+  }
+  .textFlow p {
+    margin-bottom: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: justify;
+  }
+
+  .error-message {
+    color: red;
+  }
+
+  /*These rules need to be in here for the EmployeePage to calculate the caption size*/
+
+  .textDimensionCalculation {
+      position: absolute;
+      visibility: hidden;
+      height: auto;
+      width: auto;
+      white-space: nowrap;
+  }
+  
+  .caption {
+    display: inline-block;
+    white-space: pre;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 20px;
+    text-align: left;
+  }
+
+  .tipText {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+  }
+
+  .valueText {
+    font-size: 20px;
+    vertical-align: center;
+  }
+
+  .targetItemBGRectHover {
+    fill: orange;
+  }
+
+  .target-data-tip {
+    fill: rgb(228, 182, 108);
+    stroke: rgb(0, 0, 0);
+    stroke-width: "1";
+  }
+  .target-data-tip-hovered {
+      stroke: rgb(240, 82, 9);
+      fill: rgb(223, 127, 2);
+      stroke-width: "2";
+    }
+  
