@@ -4,8 +4,6 @@ import { navigationConstants } from '../constants';
 const initialState =  { title: '', sidebarOpen: false };
 
 
-
-
 export function navigationReducer(state = initialState, action) {
     switch (action.type) {
         case navigationConstants.UPDATE_TITLE_BAR:

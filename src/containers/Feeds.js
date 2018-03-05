@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Select from '../components/newsfeed/Select'
+import FeedSelect from '../components/newsfeed/FeedSelect'
 
 
 class Feeds extends Component {
@@ -9,7 +9,7 @@ class Feeds extends Component {
     return (
 
       <div> 
-        <Select default="bbc-news"/>
+        <FeedSelect value="bbc-news"/>
       </div>
     )
   }

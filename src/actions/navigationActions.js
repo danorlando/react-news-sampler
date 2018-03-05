@@ -8,10 +8,9 @@ export const navigationActions = {
 }
 
 export function updateTitleBar(title) {
-    return { type: navigationConstants.UPDATE_TITLE_BAR, title }; 
-           
+    return { type: navigationConstants.UPDATE_TITLE_BAR, title };         
 }
 
 export function toggleSidebar(sidebarOpen) {
     return {type: navigationConstants.SIDEBAR, sidebarOpen};
-}
+} 

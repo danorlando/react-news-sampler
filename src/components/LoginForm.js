@@ -22,7 +22,7 @@ const styles = theme => ({
   },
 });
 
-const LoginFrom = (props) => {
+const LoginForm = (props) => {
   const { classes, handleChange, userEmail, password } = props;
 
   return(

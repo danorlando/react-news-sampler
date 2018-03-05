@@ -101,7 +101,12 @@ class App extends React.Component {
     return (
     <div>
       <MuiThemeProvider theme={theme}>
-        <PersistentDrawer title={this.props.title} loggedIn={this.props.loggedIn}  onSetSidebar={this.onSetSidebar} showSettings={this.state.showSettings} toggleSettings={this.toggleSettings} sidebarContent={sidebarContent}>
+        <PersistentDrawer title={this.props.title} 
+          loggedIn={this.props.loggedIn}  
+          onSetSidebar={this.onSetSidebar} 
+          showSettings={this.state.showSettings} 
+          toggleSettings={this.toggleSettings} 
+          sidebarContent={sidebarContent}>
           <Switch>
             <Route exact path="/" component={Login} />
             <Route path='/signup' component={SignUpPage}/>
