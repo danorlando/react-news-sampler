@@ -49,7 +49,6 @@ class FeedSelect extends Component {
             byCategory: false,
             country: '',
             byCountry: false,
-            advancedSearch: false
         }
         this.onChangeSource = this.onChangeSource.bind(this);
         this.onSubmitKeywordSearch = this.onSubmitKeywordSearch.bind(this);
@@ -165,7 +164,7 @@ class FeedSelect extends Component {
                         byCategory={this.state.byCategory} 
                         byKeyword={this.state.byKeyword}
                         byCountry={this.state.byCountry}
-                        advancedSearch={this.state.advancedSearch}/>
+                        advancedSearch={false}/>
                 </div>
             </div>
             </div>

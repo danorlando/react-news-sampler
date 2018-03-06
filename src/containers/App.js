@@ -18,6 +18,7 @@ import {withRouter} from 'react-router-dom';
 import Login from './Login'
 import * as firebase from 'firebase';
 import SignUpPage from './SignUpPage';
+import TemporaryDrawer from '../components/common/TemporaryDrawer';
 
 
 const theme = createMuiTheme({
@@ -101,7 +102,7 @@ class App extends React.Component {
     return (
     <div>
       <MuiThemeProvider theme={theme}>
-        <PersistentDrawer title={this.props.title} 
+        <TemporaryDrawer title={this.props.title} 
           loggedIn={this.props.loggedIn}  
           onSetSidebar={this.onSetSidebar} 
           showSettings={this.state.showSettings} 
@@ -115,7 +116,7 @@ class App extends React.Component {
             <Route path='/headlines' component={Feeds}/>
             <Route path='/passwordReset' component = {PasswordReset}/>
           </Switch>
-          </PersistentDrawer>
+          </TemporaryDrawer>
         </MuiThemeProvider>
         
       </div>

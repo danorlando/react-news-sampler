@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Display from './Display';
-import { withStyles } from 'material-ui/styles';
+import { withStyles, Typography } from 'material-ui/styles';
 import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import Select from 'material-ui/Select';
@@ -17,8 +17,7 @@ const styles = theme => ({
     },
     formControl: {
       margin: theme.spacing.unit,
-      minWidth: 200,
-      
+      minWidth: 200, 
     },
     selectEmpty: {
       marginTop: theme.spacing.unit * 2,
@@ -29,8 +28,7 @@ const styles = theme => ({
     textField: {
        padding: 0,
        margin: 0,
-
-        width: 300,
+       width: 300,
       },
     button: {
     
@@ -38,6 +36,11 @@ const styles = theme => ({
     inputLabel: {
        
     },
+    errorText: {
+      color: "#ba000d",
+      textAlign: "left",
+      fontSize: '17px'
+    }
   });
 
 class AdvancedSearch extends Component {
@@ -53,7 +56,9 @@ class AdvancedSearch extends Component {
             country: 'us',
             sortBy: '',
             byCountry: false,
-            advancedSearch: false
+            advancedSearchSubmit: false,
+            error: false,
+            errorMessage: ''
         }
         this.onAdvancedSearchSubmit = this.onAdvancedSearchSubmit.bind(this);
         this.sourceListApiUrl = 'https://newsapi.org/v2/sources?language=en&apiKey=04aab5204fb74b38974c5843de3467ff'
@@ -70,14 +75,26 @@ class AdvancedSearch extends Component {
     }
 
     onAdvancedSearchSubmit(e) {
-      this.setState({
-        advancedSearch: true 
-      })
+      //make sure we have a value for the keyword phrase first
+      if(this.state.keyword.length > 0) {
+        this.setState({
+          error: false,
+          advancedSearchSubmit: true 
+        }); 
+      }
+      else {
+        this.setState({
+          error: true,
+          errorMessage: "Please enter a keyword or phrase to find news for."
+        })
+      }
     }
 
     handleChange = name => event => {
+      if(this.state.advancedSearchSubmit) {
+        this.setState({advancedSearchSubmit: false})
+      }
         this.setState({ 
-          advancedSearch: false,
           [name]: event.target.value });
       };
 
@@ -98,6 +115,7 @@ class AdvancedSearch extends Component {
                     margin="normal"
                     /> 
                     <FormHelperText className={classes.formHelperText}>Keyword or Phrase</FormHelperText>
+                    <FormHelperText error className={classes.errorText}>{this.state.error ? this.state.errorMessage : ""}</FormHelperText>
                 </FormControl>
                 <FormControl className={classes.formControl}>
                 <Select
@@ -134,10 +152,11 @@ class AdvancedSearch extends Component {
                         category={this.state.category}
                         country={this.state.country}
                         sortBy={this.state.sortBy}
-                        byCategory={this.state.byCategory} 
+                        byCategory={this.state.byCategory}
                         byKeyword={this.state.byKeyword}
                         byCountry={this.state.byCountry}
-                        advancedSearch={this.state.advancedSearch}/>
+                        advancedSearch={true}
+                        advancedSearchSubmit={this.state.advancedSearchSubmit}/>
                 </div>
             </div>
             </div>

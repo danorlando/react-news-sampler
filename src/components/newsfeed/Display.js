@@ -34,9 +34,9 @@ class Display extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.advancedSearch)
+        const {advancedSearch} = this.props;
         if (nextProps !== this.props) {
-            if(nextProps.advancedSearch) {
+            if(nextProps.advancedSearchSubmit) {
                 console.log(nextProps)
                 let key = `https://newsapi.org/v2/everything?q=${nextProps.keyword}`;
                 let source = nextProps.source ? `&source=${nextProps.source}` : "";
@@ -45,21 +45,20 @@ class Display extends Component {
                 console.log(apiCall)
                 this.getArticles(apiCall);
             }     
-            else if(nextProps.byCategory) {
+            else if(nextProps.byCategory && !advancedSearch) {
                 let apiCall = `https://newsapi.org/v2/top-headlines?category=${nextProps.category}&apiKey=${this.API}`
                 this.getArticles(apiCall);
             }
-            else if(nextProps.byKeyword) {
+            else if(nextProps.byKeyword  && !advancedSearch) {
                 let apiCall = `https://newsapi.org/v2/everything?q=${nextProps.keyword}&apiKey=${this.API}`
                 this.getArticles(apiCall);
             } 
-            else if(nextProps.byCountry) {
+            else if(nextProps.byCountry  && !advancedSearch) {
                 let apiCall = `https://newsapi.org/v2/top-headlines?country=${nextProps.country}&apiKey=${this.API}`
                 this.getArticles(apiCall);
             }
-            else if(nextProps.source.length > 0){
+            else if(nextProps.source.length > 0 && !advancedSearch){
                 let apiCall = `https://newsapi.org/v2/top-headlines?sources=${nextProps.source}&apiKey=${this.API}`
-               console.log(apiCall)
                 this.getArticles(apiCall);   
             }
         }
