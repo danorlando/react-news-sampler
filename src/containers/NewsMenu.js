@@ -22,15 +22,15 @@ class NewsMenu extends Component {
   render() {
     return (
       <div className="bimba">
-        <Button onClick={() => this.setTitleBar('News')}>
-          <Link to='/news' ><i className="far fa-newspaper" aria-hidden="true"></i> News</Link>
+       <Button onClick={() => this.setTitleBar('Top Headlines')}> 
+          <Link to="/headlines"><i className="far fa-newspaper"></i> Headlines</Link> {' | '}
+        </Button> 
+        <Button onClick={() => this.setTitleBar('News Finder')}>
+          <Link to='/find-news' ><i className="far fa-newspaper" aria-hidden="true"></i> Find News</Link>
         </Button>
         <Button onClick={() => this.setTitleBar('About')}>
           <Link to="/about"><i className="far fa-newspaper"></i> About</Link>{' | '}
         </Button>
-        <Button onClick={() => this.setTitleBar('Feeds')}> 
-          <Link to="/feeds"><i className="far fa-newspaper"></i> Feeds</Link> {' | '}
-        </Button> 
         {this.props.loggedIn ? 
           <Button onClick={() => this.props.dispatch(userActions.onLogOut())}>
             <Link to="/"><i className="far fa-newspaper"></i> Sign Out</Link> {' | '}   

@@ -26,81 +26,56 @@ class Display extends Component {
     }
 
     componentDidMount() {
-        this.getArticlesBySource(this.props.value);
+        if(!this.props.advancedSearch) {
+            let apiCall = `https://newsapi.org/v2/top-headlines?sources=${this.props.source}&apiKey=${this.API}`
+            console.log(apiCall)
+             this.getArticles(apiCall);  
+        }
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps.advancedSearch)
         if (nextProps !== this.props) {
-            if(nextProps.byCategory) {
-                this.getArticlesByCategory(nextProps.category);
+            if(nextProps.advancedSearch) {
+                console.log(nextProps)
+                let key = `https://newsapi.org/v2/everything?q=${nextProps.keyword}`;
+                let source = nextProps.source ? `&source=${nextProps.source}` : "";
+                let sort = nextProps.sortBy ? `&sortBy=${nextProps.sortBy}&apiKey=${this.API}` : `&apiKey=${this.API}`
+                let apiCall = key + source + sort; 
+                console.log(apiCall)
+                this.getArticles(apiCall);
+            }     
+            else if(nextProps.byCategory) {
+                let apiCall = `https://newsapi.org/v2/top-headlines?category=${nextProps.category}&apiKey=${this.API}`
+                this.getArticles(apiCall);
             }
             else if(nextProps.byKeyword) {
-                this.getArticlesByKeyword(nextProps.keyword);
+                let apiCall = `https://newsapi.org/v2/everything?q=${nextProps.keyword}&apiKey=${this.API}`
+                this.getArticles(apiCall);
             } 
             else if(nextProps.byCountry) {
-                console.log(nextProps.country)
-                this.getArticlesByCountry(nextProps.country);
-            }     
-            else {
-                this.setState({
-                    url: `https://newsapi.org/v2/top-headlines?sources=${nextProps.default}&apiKey=04aab5204fb74b38974c5843de3467ff`
-                });
-                this.getArticlesBySource(nextProps.value);
+                let apiCall = `https://newsapi.org/v2/top-headlines?country=${nextProps.country}&apiKey=${this.API}`
+                this.getArticles(apiCall);
+            }
+            else if(nextProps.source.length > 0){
+                let apiCall = `https://newsapi.org/v2/top-headlines?sources=${nextProps.source}&apiKey=${this.API}`
+               console.log(apiCall)
+                this.getArticles(apiCall);   
             }
         }
     }
 
-    getArticlesByCountry(country) {
+    getArticles(apiCall) {
         var self = this;
         this.tempProxy = [];
         this.setState({photos: [], tempPhotos:[]});
 
-        axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${this.API}`)
+        axios.get(apiCall)
             .then((response)=> {
                 this.loadArticleData(response);
             })
             .catch(error => {
-                console.log(error);
-            })
-    }
-    getArticlesByCategory(category) {
-        var self = this;
-        this.tempProxy = [];
-        this.setState({photos: [], tempPhotos:[]});
-
-        axios.get(`https://newsapi.org/v2/top-headlines?category=${category}&apiKey=${this.API}`)
-            .then((response)=> {
-                this.loadArticleData(response);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
-    getArticlesByKeyword(keyword) {
-        var self = this;
-        this.tempProxy = [];
-        this.setState({ photos: [],  tempPhotos:[]});
-        
-        axios.get(`https://newsapi.org/v2/everything?q=${keyword}&apiKey=${this.API}`)
-            .then((response) => {
-                this.loadArticleData(response);  
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
-    getArticlesBySource(source) {
-        var self = this;
-        this.tempProxy = [];
-        this.setState({ photos: [],  tempPhotos:[]});
-        axios.get(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${this.API}`)
-            .then((response) => {
-                this.loadArticleData(response);  
-            })
-            .catch(error => {
-                console.log(error);
+            console.log(error);
             })
     }
 

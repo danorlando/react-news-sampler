@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createMuiTheme } from 'material-ui/styles';
 import navigationActions from '../actions';
 import MuiMenuBar from '../components/common/MuiMenuBar';
-import Main from './Main';
+import NewsFinder from './NewsFinder';
 import NewsMenu from './NewsMenu';
 import PersistentDrawer from '../components/common/PersistentDrawer';
 import About from './About';
@@ -110,9 +110,9 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Login} />
             <Route path='/signup' component={SignUpPage}/>
-            <Route path='/news' component={Main}/>
+            <Route path='/find-news' component={NewsFinder}/>
             <Route path='/about' component={About}/>
-            <Route path='/feeds' component={Feeds}/>
+            <Route path='/headlines' component={Feeds}/>
             <Route path='/passwordReset' component = {PasswordReset}/>
           </Switch>
           </PersistentDrawer>

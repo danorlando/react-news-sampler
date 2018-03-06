@@ -32,41 +32,32 @@ const styles = theme => ({
 
         width: 300,
       },
+    button: {
+    
+    },
     inputLabel: {
        
     },
   });
 
-class FeedSelect extends Component {
+class AdvancedSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
             sourceData: [],
-            source: this.props.source,
+            source: '',
             keyword: '',
             category: '',
             byKeyword: false,
             byCategory: false,
-            country: '',
+            country: 'us',
+            sortBy: '',
             byCountry: false,
             advancedSearch: false
         }
-        this.onChangeSource = this.onChangeSource.bind(this);
-        this.onSubmitKeywordSearch = this.onSubmitKeywordSearch.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.onChangeCategory = this.onChangeCategory.bind(this);
+        this.onAdvancedSearchSubmit = this.onAdvancedSearchSubmit.bind(this);
         this.sourceListApiUrl = 'https://newsapi.org/v2/sources?language=en&apiKey=04aab5204fb74b38974c5843de3467ff'
         this.handleChange = this.handleChange.bind(this);
-        this.onChangeCountry = this.onChangeCountry.bind(this);
-    }
-
-    // Handle the Select Change from the Select Options
-    onChangeSource(event) {
-        this.setState({ 
-            byKeyword: false,
-            byCategory: false,
-            byCountry: false,
-            source: event.target.value });
     }
 
     componentDidMount() {
@@ -78,36 +69,16 @@ class FeedSelect extends Component {
             })
     }
 
-    onChangeCountry(e) {
-        this.setState({ 
-            byKeyword: false,
-            byCategory: false,
-            byCountry: true,
-            country: e.target.value });
+    onAdvancedSearchSubmit(e) {
+      this.setState({
+        advancedSearch: true 
+      })
     }
-
-    onChangeCategory(e) {
-        this.setState({ 
-            byKeyword: false,
-            byCategory: true,
-            byCountry: false,
-            category: e.target.value });
-    }
-
-    onSubmitKeywordSearch(e) {
-        this.setState({
-            byKeyword: true,
-            keyword: e.target.value
-        })
-    }
-
-    onChange(e) {
-        const { id, value } = e.target;
-        this.setState({ [id]: value });
-    };
 
     handleChange = name => event => {
-        this.setState({ [name]: event.target.value });
+        this.setState({ 
+          advancedSearch: false,
+          [name]: event.target.value });
       };
 
     // Render Method
@@ -118,43 +89,43 @@ class FeedSelect extends Component {
             <div className="row">
             <div className="col-lg-12">
             <div className={classes.root}>
-                <FormControl className={classes.formControl}>
-                <Select
-                    native
-                    value={this.state.source}
-                    onChange={this.onChangeSource}>
-                        { Object.keys(allSources).map(paper => <option key={paper} value={allSources[paper].id}>{allSources[paper].name}</option>)}
-                </Select>
-                <FormHelperText className={classes.formHelperText}>Select by Source</FormHelperText>
-                </FormControl>
-                <FormControl className={classes.formControl}>
-                <Select
-                    native
-                    value={this.state.category}
-                    onChange={this.onChangeCategory}>   
-                     <option value="">None Selected</option> 
-                    <option value={"business"}>Business</option>
-                    <option value={"entertainment"}>Entertainment</option>
-                    <option value={"general"}>General</option>   
-                    <option value={"health"}>Health</option>
-                    <option value={"science"}>Science</option>
-                    <option value={"sports"}>Sports</option>    
-                    <option value={"technology"}>Technology</option>   
-                </Select>
-                <FormHelperText className={classes.formHelperText}>Select by Category</FormHelperText>
-               </FormControl>
-               <CountrySelector onChange={this.onChangeCountry} country={this.state.country} />
-                <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl}>
                 <TextField required
                     id="keyword"
                     className={classes.textField}
                     value={this.state.keyword}
-                    onChange={this.onSubmitKeywordSearch}
+                    onChange={this.handleChange("keyword")}
                     margin="normal"
                     /> 
-                    <FormHelperText className={classes.formHelperText}>Search by Keyword or Phrase</FormHelperText>
+                    <FormHelperText className={classes.formHelperText}>Keyword or Phrase</FormHelperText>
                 </FormControl>
+                <FormControl className={classes.formControl}>
+                <Select
+                    native
+                    defaultValue={""}
+                    value={this.state.value}
+                    onChange={this.handleChange("source")}>
+                    <option value={""}>None</option>
+                        { Object.keys(allSources).map(paper => <option key={paper} value={allSources[paper].id}>{allSources[paper].name}</option>)}
+                </Select>
+                <FormHelperText className={classes.formHelperText}>Limit Sources (max. 20)</FormHelperText>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                <Select
+                    native
+                    value={this.state.sortBy}
+                    onChange={this.handleChange("sortBy")}>   
+                    <option value={"publishedAt"}>Most Recent</option>  
+                    <option value={"relevancy"}>Most Relevant</option>
+                    <option value={"popularity"}>Most Popular</option>    
+                </Select>
+                <FormHelperText className={classes.formHelperText}>Sort Function</FormHelperText>
+               </FormControl>
+               <Button className={classes.formHelperText} type="submit" onClick={this.onAdvancedSearchSubmit}>
+                Submit
+                </Button>
                 </div>
+           
               <br />
               <div className="row">
                     <br />
@@ -162,6 +133,7 @@ class FeedSelect extends Component {
                         keyword={this.state.keyword}
                         category={this.state.category}
                         country={this.state.country}
+                        sortBy={this.state.sortBy}
                         byCategory={this.state.byCategory} 
                         byKeyword={this.state.byKeyword}
                         byCountry={this.state.byCountry}
@@ -173,4 +145,4 @@ class FeedSelect extends Component {
     }
 }
 
-export default withStyles(styles)(FeedSelect);
+export default withStyles(styles)(AdvancedSearch);
