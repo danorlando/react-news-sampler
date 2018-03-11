@@ -9,6 +9,9 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button'
 import Menu, { MenuItem } from 'material-ui/Menu';
 import CountrySelector from '../common/CountrySelector'
+import Checkbox from 'material-ui/Checkbox';
+import { ListItemText, List } from 'material-ui/List';
+
 
 const styles = theme => ({
     root: {
@@ -48,7 +51,7 @@ class AdvancedSearch extends Component {
         super(props);
         this.state = {
             sourceData: [],
-            source: '',
+            source: [],
             keyword: '',
             category: '',
             byKeyword: false,
@@ -68,7 +71,6 @@ class AdvancedSearch extends Component {
     componentDidMount() {
         axios.get(this.sourceListApiUrl)
             .then((response) => {
-                console.log(response)
                 let sourcesData = response.data;
                 this.setState({ sourceData: sourcesData.sources });
             })
@@ -119,12 +121,15 @@ class AdvancedSearch extends Component {
                 </FormControl>
                 <FormControl className={classes.formControl}>
                 <Select
-                    native
-                    defaultValue={""}
-                    value={this.state.value}
-                    onChange={this.handleChange("source")}>
-                    <option value={""}>None</option>
-                        { Object.keys(allSources).map(paper => <option key={paper} value={allSources[paper].id}>{allSources[paper].name}</option>)}
+                    multiple
+                    value={this.state.source}
+                    onChange={this.handleChange("source")}
+                    renderValue={selected => selected.join(', ')}
+                    >
+                        { Object.keys(allSources).map(source => <MenuItem key={source} value={allSources[source].id}>
+                          <Checkbox checked={this.state.source.indexOf(allSources[source].id) > -1 } />
+                          <ListItemText primary={allSources[source].name} />
+                        </MenuItem>)}
                 </Select>
                 <FormHelperText className={classes.formHelperText}>Limit Sources (max. 20)</FormHelperText>
                 </FormControl>

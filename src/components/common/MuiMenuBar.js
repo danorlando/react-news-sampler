@@ -48,7 +48,7 @@ const MuiMenuBar  = (props) => {
         <a className="App__settings" tabIndex="0" onClick={(e) => toggleSettings(e)} >
             {showSettings ? 'hide settings' : 'settings'}
           </a>
-          {showSettings && <Settings key="settings"/>}
+        
       </Toolbar>
     </AppBar>
   );

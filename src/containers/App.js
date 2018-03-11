@@ -68,19 +68,6 @@ class App extends React.Component {
     this.onSetSidebarOpen = this.onSetSidebar.bind(this);
  //   this.toggleSettings = this.toggleSettings.bind(this);
   }
-  
-
-  componentWillMount() {
-   }
-
-  componentDidMount() {
-   
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-  }
-
 
   toggleSettings(event) {
     event.preventDefault()
