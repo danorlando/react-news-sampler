@@ -1,1 +1,1 @@
-web: npm run open:dist
+web: node index.js
